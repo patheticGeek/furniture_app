@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_app/constants.dart';
 import 'package:furniture_app/models/product.dart';
+import 'package:furniture_app/screens/details_screen.dart';
 import 'package:furniture_app/widgets/category_list.dart';
 import 'package:furniture_app/widgets/product_card.dart';
 import 'package:furniture_app/widgets/search_box.dart';
@@ -12,7 +13,12 @@ class ProductsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text(
+          'Dashboard',
+          style: Theme.of(context).textTheme.headline6.copyWith(
+                color: Colors.white,
+              ),
+        ),
         elevation: 0,
         actions: [
           IconButton(
@@ -45,7 +51,16 @@ class ProductsScreen extends StatelessWidget {
                     return ProductCard(
                       itemIndex: index,
                       product: products[index],
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(
+                              product: products[index],
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
